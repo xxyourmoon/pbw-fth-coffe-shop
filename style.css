@@ -1,0 +1,343 @@
+/*
+ * ============================================
+ * STYLE.CSS - Modern UI Design System
+ * ============================================
+ * File ini berisi semua styling untuk project PHP login system
+ * Menggunakan design modern dengan glassmorphism dan gradient
+ */
+
+/* ============================================
+   CSS VARIABLES - Definisi warna dan ukuran
+   ============================================ */
+:root {
+  /* Primary Colors - Warna utama gradient purple-pink */
+  --primary-start: #667eea;
+  --primary-end: #764ba2;
+  
+  /* Background Colors - Warna latar belakang gelap */
+  --bg-dark-1: #0f0c29;
+  --bg-dark-2: #302b63;
+  --bg-dark-3: #24243e;
+  
+  /* Text Colors - Warna teks */
+  --text-light: #ffffff;
+  --text-muted: #a0a0a0;
+  
+  /* Card Colors - Warna untuk card glassmorphism */
+  --card-bg: rgba(255, 255, 255, 0.1);
+  --card-border: rgba(255, 255, 255, 0.2);
+  
+  /* Input Colors - Warna untuk input field */
+  --input-bg: rgba(255, 255, 255, 0.05);
+  --input-border: rgba(255, 255, 255, 0.1);
+  --input-focus: rgba(102, 126, 234, 0.5);
+  
+  /* Sizes - Ukuran standar */
+  --border-radius: 12px;
+  --border-radius-sm: 8px;
+  --transition: 0.3s ease;
+}
+
+/* ============================================
+   RESET & BASE - Style dasar untuk semua elemen
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Agar padding tidak menambah ukuran elemen */
+}
+
+body {
+  /* Font modern dari Google Fonts */
+  font-family: 'Poppins', sans-serif;
+  
+  /* Background gradient 3 warna */
+  background: linear-gradient(135deg, var(--bg-dark-1), var(--bg-dark-2), var(--bg-dark-3));
+  
+  /* Full viewport height */
+  min-height: 100vh;
+  
+  /* Centering dengan flexbox */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  color: var(--text-light);
+}
+
+/* ============================================
+   CARD CONTAINER - Glassmorphism effect
+   ============================================ */
+.card {
+  /* Latar semi-transparan */
+  background: var(--card-bg);
+  
+  /* Blur effect - ini yang membuat efek glassmorphism */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  
+  /* Border tipis untuk definisi */
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius);
+  
+  /* Padding dan ukuran */
+  padding: 40px;
+  width: 100%;
+  max-width: 420px;
+  
+  /* Shadow untuk kedalaman */
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   TYPOGRAPHY - Style untuk teks
+   ============================================ */
+.card-title {
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 8px;
+  
+  /* Gradient text - membuat teks berwarna gradient */
+  background: linear-gradient(135deg, var(--primary-start), var(--primary-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+/* ============================================
+   FORM GROUP - Container untuk input
+   ============================================ */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   INPUT FIELD - Styling untuk input
+   ============================================ */
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  
+  /* Background semi-transparan */
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius-sm);
+  
+  /* Warna teks putih */
+  color: var(--text-light);
+  font-size: 15px;
+  font-family: inherit;
+  
+  /* Transisi smooth untuk efek focus */
+  transition: var(--transition);
+}
+
+/* Placeholder style */
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Focus state - saat input diklik */
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-start);
+  box-shadow: 0 0 0 3px var(--input-focus);
+}
+
+/* ============================================
+   BUTTON - Tombol dengan gradient
+   ============================================ */
+.btn {
+  width: 100%;
+  padding: 14px;
+  
+  /* Gradient background */
+  background: linear-gradient(135deg, var(--primary-start), var(--primary-end));
+  
+  border: none;
+  border-radius: var(--border-radius-sm);
+  
+  color: var(--text-light);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+/* Hover effect - saat mouse di atas tombol */
+.btn:hover {
+  transform: translateY(-2px); /* Sedikit naik */
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+/* Active effect - saat tombol ditekan */
+.btn:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   ALERT MESSAGES - Pesan error/sukses
+   ============================================ */
+.alert {
+  padding: 12px 16px;
+  border-radius: var(--border-radius-sm);
+  margin-bottom: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Error alert - warna merah */
+.alert-error {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+}
+
+/* Success alert - warna hijau */
+.alert-success {
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #86efac;
+}
+
+/* ============================================
+   ADMIN PAGE STYLES - Halaman dashboard
+   ============================================ */
+
+/* Header/Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 32px;
+  
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--card-border);
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  z-index: 100;
+}
+
+.navbar-brand {
+  font-size: 20px;
+  font-weight: 600;
+  
+  /* Gradient text */
+  background: linear-gradient(135deg, var(--primary-start), var(--primary-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Logout button - outline style */
+.btn-outline {
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid var(--primary-start);
+  border-radius: var(--border-radius-sm);
+  
+  color: var(--primary-start);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  text-decoration: none;
+  
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-outline:hover {
+  background: linear-gradient(135deg, var(--primary-start), var(--primary-end));
+  color: var(--text-light);
+  border-color: transparent;
+}
+
+/* Welcome container */
+.welcome-container {
+  text-align: center;
+  padding-top: 80px; /* Untuk menghindari navbar */
+}
+
+.welcome-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  
+  /* Animasi fade in */
+  animation: fadeInUp 0.6s ease;
+}
+
+.welcome-subtitle {
+  font-size: 18px;
+  color: var(--text-muted);
+  
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+/* Username dengan highlight */
+.username-highlight {
+  background: linear-gradient(135deg, var(--primary-start), var(--primary-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   ANIMATIONS - Efek animasi
+   ============================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card entrance animation */
+.card {
+  animation: fadeInUp 0.5s ease;
+}
+
+/* ============================================
+   RESPONSIVE - Untuk layar kecil/mobile
+   ============================================ */
+@media (max-width: 480px) {
+  .card {
+    margin: 20px;
+    padding: 30px 20px;
+  }
+  
+  .welcome-title {
+    font-size: 32px;
+  }
+  
+  .navbar {
+    padding: 12px 16px;
+  }
+}
