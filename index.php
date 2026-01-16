@@ -2,6 +2,9 @@
 require_once 'koneksi.php';
 $sql = "SELECT * FROM article ORDER BY tanggal DESC";
 $hasil = $conn->query($sql);
+
+$sql_gallery = "SELECT * FROM gallery ORDER BY tanggal DESC";
+$hasil_gallery = $conn->query($sql_gallery);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -55,6 +58,11 @@ $hasil = $conn->query($sql);
     footer {
       background-color: #4e342e;
     }
+
+    .carousel-item img {
+      object-fit: cover;
+      height: 400px;
+    }
   </style>
 </head>
 
@@ -69,6 +77,7 @@ $hasil = $conn->query($sql);
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#artikel">Artikel</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
           <li class="nav-item"><a class="nav-link" href="login.php">Login Admin</a></li>
         </ul>
       </div>
@@ -119,6 +128,50 @@ $hasil = $conn->query($sql);
             <div class="alert alert-info text-center"><i class="bi bi-info-circle me-2"></i>Belum ada artikel yang tersedia.</div>
           </div>
         <?php endif; ?>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-2" style="color: #4e342e;"><i class="bi bi-images me-2"></i>Gallery Kami</h2>
+      <p class="text-center text-muted mb-5">Intip suasana dan momen terbaik di FTH Coffee Shop</p>
+
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner rounded shadow">
+          <?php
+          $active = true;
+          if ($hasil_gallery->num_rows > 0):
+            while ($row_gallery = $hasil_gallery->fetch_assoc()):
+          ?>
+              <div class="carousel-item <?= $active ? 'active' : '' ?>">
+                <?php if (!empty($row_gallery['gambar']) && file_exists('img/' . $row_gallery['gambar'])): ?>
+                  <img src="img/<?= htmlspecialchars($row_gallery['gambar']) ?>" class="d-block w-100" alt="Gallery">
+                <?php else: ?>
+                  <img src="https://via.placeholder.com/800x400?text=No+Image" class="d-block w-100" alt="No Image">
+                <?php endif; ?>
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+                  <p><i class="bi bi-calendar3 me-1"></i> <?= date('d M Y', strtotime($row_gallery['tanggal'])) ?></p>
+                </div>
+              </div>
+            <?php
+              $active = false;
+            endwhile;
+          else:
+            ?>
+            <div class="carousel-item active">
+              <img src="https://via.placeholder.com/800x400?text=Belum+ada+Gallery" class="d-block w-100" alt="Empty Gallery">
+            </div>
+          <?php endif; ?>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
     </div>
   </section>
